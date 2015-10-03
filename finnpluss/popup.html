@@ -1,0 +1,47 @@
+
+<!doctype html>
+<html>
+  <head>
+    <title></title>
+    <style>
+      body {
+        font-family: "Segoe UI", "Lucida Grande", Tahoma, sans-serif;
+        font-size: 80%;
+		width: 250px;
+      }
+
+	  #limit {
+		  box-sizing: border-box;
+  		width: 100%;
+	  }
+    </style>
+
+    <!--
+      - JavaScript and HTML must be in separate files: see our Content Security
+      - Policy documentation[1] for details and explanation.
+      -
+      - [1]: https://developer.chrome.com/extensions/contentSecurityPolicy
+     -->
+    <script src="jquery-1.11.3.min.js"></script>
+    <script src="popup.js"></script>
+  </head>
+  <body>
+	  <div style="margin-bottom: 1em;font-size: 1.5em;text-align: center;">
+	  	FINN <img src="icon-128.png" style="width: 1.2em;vertical-align: bottom;">
+	  </div>
+	  	  
+	  <label for="limit">Maks fellesutg./mnd.</label>
+	  <input type="text" id="limit" />
+
+	  <hr/>
+	  
+	  <label><input type="checkbox" id="hideSold" /> Skjul solgte boliger</label>
+
+	  <hr />
+	  
+	  Antall sjulte annonser: <span id="numFiltered"></span>.
+	  
+	  <div style="margin-top: 1em; font-size: .3em; text-align: right; color: #ccc">av <a target="_blank" href="http://mifi.no/" style="color: inherit">mifi.no</a></div>
+    </body>
+</html>
+
