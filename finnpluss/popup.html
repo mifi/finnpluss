@@ -24,12 +24,25 @@
      -->
     <script src="jquery-1.11.3.min.js"></script>
     <script src="popup.js"></script>
+    <script src="URI.js"></script>
   </head>
   <body>
 	  <div style="margin-bottom: 1em;font-size: 1.5em;text-align: center;">
 	  	FINN <img src="icon-128.png" style="width: 1.2em;vertical-align: bottom;">
 	  </div>
-	  	  
+
+	  <label for="numRows">Resultater pr. side</label>
+	  <select id="numRows">
+	  	<option value="30">30</option>
+	  	<option value="50">50</option>
+	  	<option value="100">100</option>
+	  	<option value="200">200</option>
+	  	<option value="500">500</option>
+	  	<option value="1000">1000</option>
+	  </select>
+
+	  <hr/>
+	  
 	  <label for="limit">Maks fellesutg./mnd.</label>
 	  <input type="text" id="limit" />
 
@@ -37,7 +50,7 @@
 	  
 	  <label><input type="checkbox" id="hideSold" /> Skjul solgte boliger</label>
 
-	  <hr />
+	  <hr/>
 	  
 	  Antall sjulte annonser: <span id="numFiltered"></span>.
 	  

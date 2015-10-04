@@ -1,6 +1,10 @@
 var numFiltered = 0;
 
-function filter(cb) {
+function broadcastData() {
+  	chrome.runtime.sendMessage({message: 'filteredCountUpdated', value: numFiltered});
+}
+
+function filter() {
 	chrome.storage.local.get(['limit', 'hideSold'], function(items) {
 		//console.log(items);
 
@@ -49,26 +53,41 @@ function filter(cb) {
 		$toHide.hide();
 		$toShow.show();
 		
-		if (cb != null) cb();
+		broadcastData();
 	});
 }
 
-filter();
 
-chrome.runtime.onMessage.addListener(function(message, sender, sendResponse) {
-	switch (message.message) {
+$(function() {
+	filter();
+
+	var observer = new MutationObserver(function(mutations) {
+		var foundMutation = false;
+	  mutations.forEach(function(mutation) {
+	    //console.log(mutation.type);
+		if (mutation.type == 'childList') {
+			foundMutation = true;
+		}
+	  });
+	  
+	  if (foundMutation) {
+		  filter();
+	  }
+	});
+  
+	// pass in the target node, as well as the observer options
+	observer.observe($('#resultlist')[0], {attributes: true, childList: true, characterData: true});
+
+
+	chrome.runtime.onMessage.addListener(function(message, sender, sendResponse) {
+		switch (message.message) {
 		case 'getFilteredCount':
-		filter(function() {
-			sendResponse(numFiltered);
-		});
-		return true;
-		break;
-		
+			broadcastData();
+			break;
+
 		case 'render':
-		filter(function() {
-			sendResponse(numFiltered);
-		});
-		return true;
-		break;
-	}
+			filter();
+			break;
+		}
+	});
 });

@@ -1,11 +1,11 @@
 {
   "name": "FinnPluss - Ekstra funksjoner til finn.no",
   "short_name": "FinnPluss",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "Denne utvidelsen gir deg ekstra funksjoner på finn.no",
   "permissions": [
 	"declarativeContent",
-        "activeTab",
+    "activeTab",
 	"storage"
   ],
   "background": {
